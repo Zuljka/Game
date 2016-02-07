@@ -6,13 +6,17 @@ void setup ()
 {
   size (900, 700);
   startGame();
+    //game does not start while key is not pressed
+  //any key will start the game 
+  if (!keyPressed) return;
 }
 
-
+char letter = 'a'; // for new game
 
 void draw()
 {
 
+ gameScreen();
 
 }
 
@@ -49,4 +53,13 @@ void gameScreen()
 void finalScreen()
 {
   //code for Game Over goes here
+}
+
+void keyPressed()
+{
+  
+  if(key =='n')
+  {
+    gameScreen();
+   }
 }
