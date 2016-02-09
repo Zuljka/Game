@@ -2,40 +2,39 @@
 Author: Maria Kazydub
 */
  
-int state = 0; //current state
-final int Main_Menu = 0;
-final int in_game = 1;
-final int game_over = 2;
+PImage bg_title; 
+//initial screen is screen 0 
+int gameScreen = 0;
  
+
 void setup ()
 {
   size (700, 700);
-  //startGame();
-    //game does not start while key is not pressed
-  //any key will start the game 
-  // if (!keyPressed) return;
+  //loaded picture for background
+  bg_title = loadImage("StartScreen.png");
 }
 
 void draw()
 {
-  switch(state) 
+  if(gameScreen == 0)
   {
-    case Main_Menu:
-    startGame();
-    break;
+    initScreen();
   }
-
+  else if(gameScreen == 1)
+  {
+    gameScreen();
+  }
+  else if(gameScreen == 2)
+  {
+    finalScreen();
+  }
 }
 
-void startGame()
-{
-  text("Welcome", 400, 400);
-}
-
-
+//start screen asking to press a mouse to start a game
 void initScreen()
 {
-  //code of initial screen here
+  text("Welcome", 350, 40);
+  background(bg_title);
 }
 
 void gameScreen()
@@ -62,12 +61,17 @@ void finalScreen()
   //code for Game Over goes here
 }
 
-/*void keyPressed()
+
+
+public void mousePressed()
 {
-  
-  if(key =='n')
+  if(gameScreen == 0)
   {
-    gameScreen();
-   }
+    StartGame();
+  }
 }
-*/
+
+void StartGame()
+{
+  gameScreen=1;
+}
