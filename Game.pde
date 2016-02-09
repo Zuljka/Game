@@ -2,21 +2,28 @@
 Author: Maria Kazydub
 */
  
+int state = 0; //current state
+final int Main_Menu = 0;
+final int in_game = 1;
+final int game_over = 2;
+ 
 void setup ()
 {
-  size (900, 700);
-  startGame();
+  size (700, 700);
+  //startGame();
     //game does not start while key is not pressed
   //any key will start the game 
-  if (!keyPressed) return;
+  // if (!keyPressed) return;
 }
-
-char letter = 'a'; // for new game
 
 void draw()
 {
-
- gameScreen();
+  switch(state) 
+  {
+    case Main_Menu:
+    startGame();
+    break;
+  }
 
 }
 
@@ -55,7 +62,7 @@ void finalScreen()
   //code for Game Over goes here
 }
 
-void keyPressed()
+/*void keyPressed()
 {
   
   if(key =='n')
@@ -63,3 +70,4 @@ void keyPressed()
     gameScreen();
    }
 }
+*/
