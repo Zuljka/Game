@@ -50,8 +50,8 @@ void initScreen()
   melody.play();
   background(bg_title);
   welcome_font = loadFont("BankGothicCLtBTRUS-48.vlw");
-   stroke(0);
   textFont(welcome_font, 48); 
+  fill(255);
   text("Welcome", 250, 40);
   textFont(welcome_font, 32);
   text("Click anywhere to start", 160, 80);
@@ -73,33 +73,50 @@ void gameScreen()
   float paddle_centre = 80/2;
   fill(222, 47, 70);
    
-    rect (mouseX, 600, paddle_size, 5);
-    
-  text("hi:" + mouseX, game_area_x, 60);
-  
+    rect (mouseX, 600, paddle_size, 5); 
   //test to call finalScreen ( Game Over)
   if(mouseX > 600)
   {
-    finalScreen();
+    gameScreen = 2; //calling a finla Screen
   }
 }
 
 void finalScreen()
 {
   //code for Game Over goes here  
-  background(242, 15, 15);
-  welcome_font = loadFont("Cracked-70.vlw");
-  textFont(gameOver, 72);
-  text("Game Over", 200, 200);
+  background(0);
+  gameOver = loadFont("Cracked-70.vlw");
+  
+  fill(242, 15, 15);
+  textFont(gameOver, 150);
+  text("Game Over", 130, 350);
+  text(":(", 320, 500);
+  
+  welcome_font = loadFont("BankGothicCLtBTRUS-48.vlw");
+  textFont(welcome_font, 24); 
+  fill(255);
+  text("Click anywhere to try again", 190, 680);
+  
+  
+ 
 }
 
 
 
 public void mousePressed()
 {
+  //start game with start screen and continue
   if(gameScreen == 0)
   {
     StartGame();
+  }
+  
+  /*start game again after Game Over without restarting a game
+  I decided to start game from initial screen, instead of loading gameScreen
+  */
+  if(gameScreen == 2)
+  {
+    gameScreen = 0;
   }
 }
 
