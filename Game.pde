@@ -15,6 +15,7 @@ PFont gameOver;
 
 //initial screen is screen 0
 int gameScreen = 0;
+
  
 
 void setup ()
@@ -25,7 +26,12 @@ void setup ()
   minim = new Minim(this);
   melody = minim.loadFile("main.mp3");
   
+  paddle = new Paddle();
+  ball = new Ball();
+  
 }
+Paddle paddle; //calling the instance of paddle class
+Ball ball; // calling instance of class Ball
 
 void draw()
 {
@@ -63,22 +69,31 @@ void gameScreen()
    //stop playing a sound once game screen has been selected
   melody.close();
   
-   float game_area_x = width - width * 0.1f;
-   float game_area_y = height - height * 0.1f;
+   float game_area_x = width;
+   float game_area_y = height;
   //draw game field
-  fill(252, 171, 182);
-  rect (5, 5, game_area_x, game_area_y);
+  fill(203, 194, 109);
+  rect (0, 0, game_area_x, game_area_y);
   //draw paddle
   float paddle_size = 80;
   float paddle_centre = 80/2;
   fill(222, 47, 70);
    
-    rect (mouseX, 600, paddle_size, 5); 
-  //test to call finalScreen ( Game Over)
+    rect (mouseX, 600, paddle_size, 5);
+  
+  //paddle.display();
+  //paddle.update();
+    //test to call finalScreen ( Game Over)
+    
+   ball.display();
+   ball.update();
+
   if(mouseX > 600)
   {
     gameScreen = 2; //calling a finla Screen
   }
+  
+  
 }
 
 void finalScreen()
